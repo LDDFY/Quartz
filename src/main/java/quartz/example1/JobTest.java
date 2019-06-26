@@ -18,12 +18,15 @@ import static org.quartz.TriggerBuilder.newTrigger;
 public class JobTest {
     public static void main(String[] args) {
         try {
+            //获取调度器
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
+            //定义Job信息
             JobDetail detail = newJob(HelloJob.class)
                     .withIdentity("hello", "group1")
                     .build();
 
+            //定义触发器
             Trigger trigger = newTrigger()
                     .withIdentity("trigger1", "group1")
                     .startNow()
@@ -31,8 +34,10 @@ public class JobTest {
                             .withIntervalInSeconds(10)
                             .withRepeatCount(10))
                     .build();
-            scheduler.scheduleJob(detail, trigger);
 
+            //添加Job到调度器中
+            scheduler.scheduleJob(detail, trigger);
+            //启动调度器
             scheduler.start();
             //scheduler.shutdown(true);
         } catch (SchedulerException e) {
