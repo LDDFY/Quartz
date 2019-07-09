@@ -9,11 +9,11 @@
  */
 package quartz.example1;
 
+import java.util.concurrent.TimeUnit;
+
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * quartz 示例1
